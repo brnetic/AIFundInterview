@@ -1,15 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import './App.css';
 
 // Use environment variable for backend URL, fallback to deployed URL
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://haiku-generator-backend.onrender.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://aifundinterview.onrender.com';
 
 function App() {
   const [word, setWord] = useState('');
   const [haiku, setHaiku] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+
+  // Debug component mounting
+  useEffect(() => {
+    console.log('App component mounted');
+    console.log('Backend URL:', BACKEND_URL);
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

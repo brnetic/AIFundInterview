@@ -28,7 +28,7 @@ try:
         cred = credentials.Certificate(cred_dict)
     else:
         # Use local credentials file
-        cred = credentials.Certificate("firebase-credentials.json")
+        cred = credentials.Certificate("aifund-interview-firebase-adminsdk-fbsvc-a76b9a7150.json")
     
     firebase_admin.initialize_app(cred)
     db = firestore.client()
