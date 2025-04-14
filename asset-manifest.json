@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/AIFundInterview/static/css/main.4a2689b3.css",
+    "main.js": "/AIFundInterview/static/js/main.b397e228.js",
+    "index.html": "/AIFundInterview/index.html",
+    "main.4a2689b3.css.map": "/AIFundInterview/static/css/main.4a2689b3.css.map",
+    "main.b397e228.js.map": "/AIFundInterview/static/js/main.b397e228.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.4a2689b3.css",
+    "static/js/main.b397e228.js"
+  ]
+}
