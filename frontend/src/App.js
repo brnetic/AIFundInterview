@@ -9,30 +9,44 @@ function App() {
   const haikuTemplates = [
     {
       lines: [
-        "A gentle breeze blows",
-        "Through the trees and flowers bright",
-        "Nature's sweet embrace"
+        "The {word} blooms bright",
+        "Spring whispers in morning light",
+        "Nature's gift takes flight"
       ]
     },
     {
       lines: [
-        "Moonlight on water",
-        "Ripples dance in silver light",
-        "Night's quiet beauty"
+        "Silent {word} falls",
+        "Winter's breath upon the walls",
+        "Peace in nature calls"
       ]
     },
     {
       lines: [
-        "Mountains touch the sky",
-        "Clouds drift by in endless blue",
-        "Peace fills the valley"
+        "Golden {word} shines",
+        "Summer's warmth in perfect lines",
+        "Time in beauty dines"
+      ]
+    },
+    {
+      lines: [
+        "Crimson {word} glows",
+        "Autumn's dance in evening shows",
+        "Life's cycle flows"
+      ]
+    },
+    {
+      lines: [
+        "Soft {word} drifts by",
+        "Moonlight dances in the sky",
+        "Night's sweet lullaby"
       ]
     }
   ];
 
   const generateHaiku = (word) => {
     const template = haikuTemplates[Math.floor(Math.random() * haikuTemplates.length)];
-    return template.lines.join('\n');
+    return template.lines.map(line => line.replace('{word}', word)).join('\n');
   };
 
   const handleSubmit = (e) => {
