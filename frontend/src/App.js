@@ -1,9 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import React, { useState } from 'react';
 import './App.css';
-
-// Use environment variable for backend URL, fallback to deployed URL
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://aifundinterview.onrender.com';
 
 function App() {
   const [word, setWord] = useState('');
@@ -11,41 +7,51 @@ function App() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  // Debug component mounting
-  useEffect(() => {
-    console.log('App component mounted');
-    console.log('Backend URL:', BACKEND_URL);
-  }, []);
+  // Haiku templates
+  const haikuTemplates = [
+    "The {word} blooms bright,\nSpring whispers in the morning light,\nNature's gift takes flight.",
+    "Silent {word} falls,\nWinter's breath upon the walls,\nPeace in nature calls.",
+    "Golden {word} shines,\nSummer's warmth in perfect lines,\nTime in beauty dines.",
+    "Crimson {word} glows,\nAutumn's dance in evening shows,\nLife's cycle flows.",
+    "Soft {word} drifts by,\nMoonlight dances in the sky,\nNight's sweet lullaby.",
+    "Bold {word} stands tall,\nMountains echo nature's call,\nMajestic and all.",
+    "Sweet {word} in bloom,\nBees dance in the afternoon,\nNature's sweet perfume.",
+    "Wild {word} runs free,\nThrough the fields and over sea,\nWild as it can be.",
+    "Quiet {word} sleeps,\nUnder stars the night sky keeps,\nPeaceful dreams it reaps.",
+    "Bright {word} shines clear,\nMorning light is drawing near,\nDaybreak's song to hear."
+  ];
 
-  const handleSubmit = async (e) => {
+  const generateHaiku = (word) => {
+    const randomTemplate = haikuTemplates[Math.floor(Math.random() * haikuTemplates.length)];
+    return randomTemplate.replace(/{word}/g, word);
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
     setError('');
     
     try {
-      console.log('Sending request with word:', word);
-      const response = await axios.post(`${BACKEND_URL}/generate-haiku`, {
-        word: word
-      }, {
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      console.log('Response received:', response.data);
-      setHaiku(response.data.haiku);
-    } catch (err) {
-      console.error('Error details:', err);
-      if (err.response) {
-        // The request was made and the server responded with a status code
-        // that falls out of the range of 2xx
-        setError(`Error: ${err.response.data.error || 'Failed to generate haiku'}`);
-      } else if (err.request) {
-        // The request was made but no response was received
-        setError('No response from server. Please try again later.');
-      } else {
-        // Something happened in setting up the request that triggered an Error
-        setError('Error setting up the request');
+      if (!word.trim()) {
+        setError('Please enter a word');
+        return;
       }
+      
+      const generatedHaiku = generateHaiku(word);
+      setHaiku(generatedHaiku);
+      
+      // Store in localStorage for persistence
+      const haikus = JSON.parse(localStorage.getItem('haikus') || '[]');
+      haikus.push({
+        word: word,
+        haiku: generatedHaiku,
+        timestamp: new Date().toISOString()
+      });
+      localStorage.setItem('haikus', JSON.stringify(haikus));
+      
+    } catch (err) {
+      setError('Failed to generate haiku. Please try again.');
+      console.error(err);
     } finally {
       setLoading(false);
     }
