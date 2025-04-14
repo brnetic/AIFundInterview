@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/AIFundInterview/static/css/main.2e96ac21.css",
-    "main.js": "/AIFundInterview/static/js/main.56cb8929.js",
+    "main.css": "/AIFundInterview/static/css/main.4a2689b3.css",
+    "main.js": "/AIFundInterview/static/js/main.7b65179f.js",
     "index.html": "/AIFundInterview/index.html",
-    "main.2e96ac21.css.map": "/AIFundInterview/static/css/main.2e96ac21.css.map",
-    "main.56cb8929.js.map": "/AIFundInterview/static/js/main.56cb8929.js.map"
+    "main.4a2689b3.css.map": "/AIFundInterview/static/css/main.4a2689b3.css.map",
+    "main.7b65179f.js.map": "/AIFundInterview/static/js/main.7b65179f.js.map"
   },
   "entrypoints": [
-    "static/css/main.2e96ac21.css",
-    "static/js/main.56cb8929.js"
+    "static/css/main.4a2689b3.css",
+    "static/js/main.7b65179f.js"
   ]
 }
